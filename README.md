@@ -12,3 +12,6 @@
    ```bash
    git clone <repository-url>
    cd <project-directory>
+2. **Install Dependencies**:
+   ```bash
+   npm install
