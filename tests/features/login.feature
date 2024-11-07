@@ -1,7 +1,7 @@
-Feature: Login to application 
+Feature: Login to ParaBank 
 
 Scenario Outline: Valid login 
     Given User is on Login screen 
     When Adding valid username 
-    And Adding valid password
+    When Adding valid password
     Then Click on Login button 

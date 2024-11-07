@@ -1,7 +1,9 @@
-const { Before, BeforeAll, After, AfterAll, setDefaultTimeout } = require("@cucumber/cucumber");
+require('dotenv').config()
+const { Before, BeforeAll, AfterAll, After, setDefaultTimeout } = require("@cucumber/cucumber");
 const { chromium } = require("playwright");
+const fs = require('fs');
 
-setDefaultTimeout(60000); // Set default timeout
+setDefaultTimeout(60000); // Set Default timeout
 
 // Launch the browser
 BeforeAll(async function () {
@@ -14,6 +16,24 @@ BeforeAll(async function () {
     });
     const context = await browser.newContext();
     page = await context.newPage();
+
+    //Login to application 
+    const url = process.env.URL;
+    const username = process.env.APP_USERNAME;
+    const password = process.env.APP_PASSWORD;
+    const usernameLocator = "input[name='username']";
+    const passwordLocator = "input[name='password']";
+    const loginBtn = "input[value='Log In']";
+
+    //Navigate to the application 
+    await page.goto(url);
+    //Enter Username, Password and clicking on login button 
+    await page.fill(usernameLocator, username);
+    console.log("Entered Username as "+username);
+    await page.fill(passwordLocator, password);
+    console.log("Entered Password as "+password);
+    await page.click(loginBtn);
+    console.log("Clicked on Login button");
 });
 
 // Quit the browser

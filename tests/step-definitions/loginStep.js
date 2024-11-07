@@ -1,3 +1,4 @@
+const { Given, When, Then, } = require("@cucumber/cucumber");
 
 Given('User is on Login screen', function () {
 
